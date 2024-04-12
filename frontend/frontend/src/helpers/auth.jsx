@@ -1,6 +1,6 @@
 import toast from "react-hot-toast"
 
-export default async function login(e){
+export default async function login(email, password){
     
 
     let response= await fetch('http://localhost:8000/api/token/',{
@@ -8,7 +8,7 @@ export default async function login(e){
         headers:{
             'Content-Type':'application/json'
         },
-        body: JSON.stringify({email : e.target.email.value,password : e.target.password.value}) 
+        body: JSON.stringify({email, password}) 
     })
 
     if(response.status== 200){

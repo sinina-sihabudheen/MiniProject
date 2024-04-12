@@ -7,7 +7,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import UserSerializer
 from rest_framework.views import APIView
 
-# from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.exceptions import AuthenticationFailed
 
 from .models import User
 from rest_framework import status
@@ -47,21 +47,21 @@ class RegisterView(APIView):
         return Response(serializer.data)
     
 
-# class LoginView(APIView):
-#     def post(self,request):
-#         email=request.data['email']
-#         password=request.data['password']
+class LoginView(APIView):
+    def post(self,request):
+        email=request.data['email']
+        password=request.data['password']
         
-#         user = User.objects.filter(email=email).first()
+        user = User.objects.filter(email=email).first()
         
-#         if user is None:
-#             raise AuthenticationFailed("User not found..")
-#         if not user.check_password(password):
-#             raise AuthenticationFailed("Incorrect password..")
+        if user is None:
+            raise AuthenticationFailed("User not found..")
+        if not user.check_password(password):
+            raise AuthenticationFailed("Incorrect password..")
         
-#         return Response({
-#             'message':'success'
-#         })
+        return Response({
+            'message':'success'
+        })
 
 @api_view(['GET'])   
 def userList(request):

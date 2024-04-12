@@ -1,29 +1,31 @@
-import {createSlice} from '@reduxjs/toolkit'
-import { useReducer } from 'react'
+import { createSlice } from '@reduxjs/toolkit';
 
+const INITIAL_STATE = {
+    user: null,
+    userToken: null,
+    count: 0
+};
 
-const INITIAL_STATE={
-    user:null,
-    userToken:null,
-    count:0
-}
 const userSlice = createSlice({
-    name:'users',
-    initialState:INITIAL_STATE,
-    reducers:{
-        change:(state)=>{
-            state.count = 1
+    name: 'users',
+    initialState: INITIAL_STATE,
+    reducers: {
+        setUserInfo: (state, action) => {
+            state.user = action.payload; 
+            localStorage.setItem('userInfo', JSON.stringify(action.payload));
         },
-        updateAuthToken:(state,action)=>{
-            state.userToken=action.payload
+        userLogout: (state) => {
+            state.user = null; 
+            localStorage.removeItem('userInfo');
         },
-        updateUser:(state,action)=>{
-            state.user=action.payload
+        updateAuthToken: (state, action) => {
+            state.userToken = action.payload;
+        },
+        updateUser: (state, action) => {
+            state.user = action.payload;
         }
     }
-})
+});
 
-
-export const { loginUser,change,updateAuthToken,updateUser } = userSlice.actions
-
-export default userSlice.reducer
+export const { setUserInfo, userLogout, updateAuthToken, updateUser } = userSlice.actions;
+export default userSlice.reducer;

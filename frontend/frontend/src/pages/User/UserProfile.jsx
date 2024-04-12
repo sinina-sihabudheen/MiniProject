@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import './Profile.css'
 import { jwtDecode } from 'jwt-decode'
-import { getlocal } from '../helpers/auth'
+import { getlocal } from '../../helpers/auth'
 import axios from 'axios'
-import profile from '../images/profile.png'
 import { useNavigate } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
-import LoginPage from './pages/LoginPage'
-import HomePage from './pages/HomePage'
+import LoginPage from './pages/User/LoginPage'
+import HomePage from './pages/User/HomePage'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Header from './components/Header';
 
@@ -12,10 +12,11 @@ function App() {
       <div className='App'>
   
         <Router>
-          <Header />
-          <Routes>
-            <Route path='login' element={<LoginPage />} />
-            <Route path='/*' element={<HomePage />} />
+        <Routes>
+
+        <Route path='/*'  element={<Header />} />
+            {/* <Route path='login' element={<LoginPage />} />
+            <Route path='/*' element={<HomePage />} /> */}
           </Routes>
 
         </Router>
