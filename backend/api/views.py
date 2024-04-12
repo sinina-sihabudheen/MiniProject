@@ -47,21 +47,21 @@ class RegisterView(APIView):
         return Response(serializer.data)
     
 
-class LoginView(APIView):
-    def post(self,request):
-        email=request.data['email']
-        password=request.data['password']
+# class LoginView(APIView):
+#     def post(self,request):
+#         email=request.data['email']
+#         password=request.data['password']
         
-        user = User.objects.filter(email=email).first()
+#         user = User.objects.filter(email=email).first()
+#         print("USER data",user)
+#         if user is None:
+#             raise AuthenticationFailed("User not found..")
+#         if not user.check_password(password):
+#             raise AuthenticationFailed("Incorrect password..")
         
-        if user is None:
-            raise AuthenticationFailed("User not found..")
-        if not user.check_password(password):
-            raise AuthenticationFailed("Incorrect password..")
-        
-        return Response({
-            'message':'success'
-        })
+#         return Response({
+#             'message':'success'
+#         })
 
 @api_view(['GET'])   
 def userList(request):
@@ -76,25 +76,52 @@ def userList(request):
 def userDetails(request,pk):
     try:
         user = User.objects.get(id=pk)
+        print("sdfegege",user)
         serializer=UserSerializer(user,many=False)
+        print("edfwefwe",serializer)
         return Response(serializer.data)
     except User.DoesNotExist:
         return Response("User not found!",status=status.HTTP_404_NOT_FOUND)
     
 
+# @api_view(['PUT'])
+# def userUpdate(request,pk):
+#     try:
+#         data=request.data
+#         user=User.objects.get(id=pk)
+#         print(user)
+#         serializer=UserSerializer(user,data=data)
+#         print("serializer",serializer)
+
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         else:
+#             return Response(serializer.errors,status= status.HTTP_400_BAD_REQUEST)
+#     except User.DoesNotExist:
+#         return Response("User not found!",status=status.HTTP_404_NOT_FOUND)
+
 @api_view(['PUT'])
-def userUpdate(request,pk):
+def userUpdate(request, pk):
     try:
-        data=request.data
-        user=User.objects.get(id=pk)
-        serializer=UserSerializer(user,data=data)
+        user = User.objects.get(id=pk)
+        serializer = UserSerializer(user, data=request.data) 
+        print("Data received:", request.data)
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         else:
-            return Response(serializer.errors,status= status.HTTP_400_BAD_REQUEST)
+            print("Serializer errors:", serializer.errors)  # Add for debugging
+
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     except User.DoesNotExist:
-        return Response("User not found!",status=status.HTTP_404_NOT_FOUND)
+        return Response("User not found!", status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:  
+        print(f"An error occurred: {e}")
+        return Response(f"An error occurred: {e}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 
 @api_view(['DELETE'])

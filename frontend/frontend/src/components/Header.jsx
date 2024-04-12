@@ -6,7 +6,7 @@ import LoginPage from '../pages/User/LoginPage'
 import Signup from '../pages/User/SignupPage'
 import HomePage from '../pages/User/HomePage'
 import { Routes, Route} from "react-router-dom";
-import UserProfile from "../pages/User/UserProfile"
+import Profile from "../pages/User/UserProfile"
 
 const Header = () => {
   // let {username,is_admin}=jwtDecode(getlocal())
@@ -26,8 +26,8 @@ const Header = () => {
               <Route path='login' element={<LoginPage/>} />
               <Route path='signup' element={<Signup/>} />
               <Route path='' element={<HomePage/>} />
-              <Route path='profile' element={<UserProfile/>} />
-              </Routes>       
+              <Route path='profile' element={<Profile/> } />
+            </Routes>       
         
     </div>
   )

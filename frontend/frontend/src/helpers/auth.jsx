@@ -10,7 +10,7 @@ export default async function login(email, password){
         },
         body: JSON.stringify({email, password}) 
     })
-
+    console.log(response, "Login Res...");
     if(response.status== 200){
         const data= await response.json()
         localStorage.setItem('userToken',JSON.stringify(data))

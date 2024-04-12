@@ -4,6 +4,7 @@ import login, { getlocal } from '../../helpers/auth';
 import {jwtDecode} from 'jwt-decode';
 import { updateAuthToken, updateUser } from '../../redux/userReducer'
 import {Link, useNavigate} from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
 
 
 
@@ -18,7 +19,6 @@ const LoginPage = () => {
   const dispatch= useDispatch()
 
   useEffect(()=>{
-    // console.log(response);
     if (response) {
       navigate('/')
     }
@@ -54,7 +54,7 @@ const LoginPage = () => {
     e.preventDefault();
     
     
-    console.log('dkfshk',email,password)
+    console.log('xyz',email,password)
   
     if (email === "") {
       toast.error("Please enter email field!");
@@ -68,10 +68,11 @@ const LoginPage = () => {
       console.log("decode",decoded)  
       dispatch(updateUser(decoded))
       dispatch(updateAuthToken(response))
-      console.log("successfull")
+      console.log("successfull")     
       navigate('/profile')
    
     } catch (err) {
+      toast.error("Invalid Credentials..!");
       console.error("Error occurred:", err);
      
     }
@@ -80,17 +81,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      {/* <form onSubmit={loginSubmit}>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-          <input type="email" name='email'  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-          <input type="password" name='password' className="form-control" id="exampleInputPassword1"/>
-        </div>
-        <button type="submit" className="loginbtn">Login</button>
-      </form> */}
+      
       <form onSubmit={loginSubmit}>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -103,9 +94,10 @@ const LoginPage = () => {
         
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
-
-
     </div>
+
+ 
+
   );
 };
 
