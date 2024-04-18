@@ -2,33 +2,35 @@ import React from 'react'
 import {Link, useNavigate } from "react-router-dom"
 import { jwtDecode } from 'jwt-decode'
 import { getlocal } from '../helpers/auth'
-import LoginPage from '../pages/User/LoginPage'
-import Signup from '../pages/User/SignupPage'
-import HomePage from '../pages/User/HomePage'
-import { Routes, Route} from "react-router-dom";
-import Profile from "../pages/User/UserProfile"
 
-const Header = () => {
-  // let {username,is_admin}=jwtDecode(getlocal())
-  // const navigate=useNavigate()
 
-  // const logout=()=>{
-  //   localStorage.removeItem('userToken')
-  //   navigate('/login')
-  // }
+const Header = ({title}) => {
+  let {username,is_admin}=jwtDecode(getlocal())
+  const navigate=useNavigate()
+
+  const logout=()=>{
+    localStorage.removeItem('userToken')
+    navigate('/login')
+  }
   return (
     <div>
-          
-            {/* <Link to="/"><button>Home</button></Link>
-            <Link to="/login"><button>Login</button></Link>
-            <Link to="/signup"><button>Signup</button></Link> */}
-            <Routes>
-              <Route path='login' element={<LoginPage/>} />
-              <Route path='signup' element={<Signup/>} />
-              <Route path='' element={<HomePage/>} />
-              <Route path='profile' element={<Profile/> } />
-            </Routes>       
+      <nav class="navbar bg-secondary">
         
+        <div class="container-fluid">
+          <h3 class="text-light m-2 ">{title} </h3>
+            <div class="d-flex">
+              {!is_admin && 
+                  <>
+                    <a class="navbar-brand"><Link to="/">Home</Link></a>
+                    <a class="navbar-brand"><Link to='/profile'>Profile</Link></a>
+                  </>
+               }
+               
+                <a class="navbar-brand text-warning">Hello,{username}</a>
+                <button className='bttn' onClick={logout}>logout</button>
+            </div>
+        </div>
+      </nav>  
     </div>
   )
 }

@@ -8,8 +8,8 @@ import toast, { Toaster } from 'react-hot-toast'
 import { FaSignInAlt } from 'react-icons/fa'
 
 
-const LoginPage = () => {
-  const [email,setEmail]= useState('')
+const AdminLogin = () => {
+    const [email,setEmail]= useState('')
   const [password,setPassword] = useState('')
 
   const navigate= useNavigate()
@@ -20,9 +20,10 @@ const LoginPage = () => {
 
   useEffect(()=>{
     if (response) {
-      navigate('/')
+
+      navigate('/admin')
     }
-  },[response, navigate])
+  },[])
  
 
 
@@ -49,7 +50,8 @@ const LoginPage = () => {
       dispatch(updateAuthToken(response))
       console.log("successfull")
     
-      navigate('/')
+      navigate('/adminhome')
+    
       
       
     }catch(err){
@@ -59,15 +61,13 @@ const LoginPage = () => {
 
   }
   
-
-  
   return (
     <>
       
       <Toaster position='top-left' reverseOrder='false' ></Toaster>
       <section className='heading'>
         <h1>
-          <FaSignInAlt /> Login
+          <FaSignInAlt /> Admin Login
         </h1>
        
       </section><br />
@@ -98,11 +98,8 @@ const LoginPage = () => {
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
       </section>
-    </>
+      </>
+  )
+}
 
- 
-
-  );
-};
-
-export default LoginPage;
+export default AdminLogin

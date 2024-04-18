@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
 import LoginPage from './LoginPage'
 import { Link } from 'react-router-dom'
 import Header from '../../components/Header'
@@ -15,7 +16,7 @@ const HomePage = ({title}) => {
       setUser(true)
     }
   }, [])
-  const logoutHandil=()=>{
+  const logoutHandle=()=>{
     localStorage.removeItem("userToken")
     setUser(false)
   }  
@@ -27,14 +28,14 @@ const HomePage = ({title}) => {
             !user ?
             <div className="card-body flex  ">
               <Link to={'/login'}>
-              <button className='me-3 bg-primary text-white'>Login</button></Link>
+              <button className='btn'><FaSignInAlt />Login</button></Link>
               <Link to={'/signup'}>
-              <button className='me-3 bg-primary text-white'>Signup</button></Link>
+              <button className='btn'><FaUser />Signup</button></Link>
             </div> :
             <div className="card-body flex  ">
-              <button className='me-3 bg-primary text-white' onClick={logoutHandil}>Logout</button>
+              <button className='btn' onClick={logoutHandle}><FaSignOutAlt />Logout</button>
               <Link to={'/profile'}>
-              <button className='me-3 bg-primary text-white'>Profile</button></Link>
+              <button className='btn'><FaUser />Profile</button></Link>
             </div>}
         </div>
 
