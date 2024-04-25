@@ -104,7 +104,7 @@ const Profile = () => {
         <div>
             <div className="container ">
                 <Toaster position='top-center' reverseOrder='false' ></Toaster>
-                <div className="row ">
+                {/* <div className="row ">
 
 
                     <div className="card p-0 d-flex flex-column">
@@ -173,17 +173,144 @@ const Profile = () => {
                                 </p>
                             </div>}
                     </div>
+                </div> */}
+
+{/* 
+<div className="flex justify-center items-center h-screen ">
+    <div className="w-screen max-w-md rounded overflow-hidden shadow-lg bg-white">
+
+  <div className="px-6 py-4">
+
+    <div className="flex items-center mb-4">
+      <img
+        className="w-12 h-12 rounded-full mr-4"
+        src="https://via.placeholder.com/150"
+        alt="Placeholder Image"
+      />
+      <div>
+        <div className="font-bold text-xl">Card Title</div>
+        <div className="text-gray-700">Subheading</div>
+      </div>
+    </div>
+  
+    <div className="mb-4">
+      <label
+        className="block text-gray-700 text-sm font-bold mb-2"
+        htmlFor="name"
+      >
+        Name
+      </label>
+      
+    </div>
+    <div className="mb-4">
+      <label
+        className="block text-gray-700 text-sm font-bold mb-2"
+        htmlFor="email"
+      >
+        Email
+      </label>
+      
+    </div>
+   
+    <div className="flex justify-between">
+      <button
+        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="button"
+      >
+        Edit
+      </button>
+      <button
+        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="button"
+      >
+        Home
+      </button>
+    </div>
+  </div>
+</div>
+</div> */}
+
+<div className="flex justify-center items-center h-screen">
+  <div className="max-w-xl w-full bg-blue-300">
+    <div className="bg-blue-50 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div className="text-center text-xl font-bold mb-4 bg-blue-100">My Profile</div> 
+
+      {!isopen ? (
+        <div className="flex items-start ">
+          <div className="w-1/4">
+            <img
+              src={user.profile_img ? `http://localhost:8000${user.profile_img}/` : "https://d2t5hgiouuhmes.cloudfront.net/GJIqTd_5v-OIP.jpg"}
+              alt="Avatar"
+              className="w-full rounded-lg"
+              style={{ height: "100%" }}
+            />
+          </div>
+          <div className="w-3/4 ml-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Name:</label>
+            <h5 className="font-bold">{user.username}</h5><br />
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Email:</label>
+            <p>{user.email}</p>
+            
+            <div className="flex mt-4">
+              <button onClick={() => setIsopen(true)} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
+                Edit
+              </button>
+              <button onClick={() => history("/")} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                Home
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        // Edit Form
+        <form onSubmit={updateProfile}>
+          <div className="flex items-start">
+            <div className="w-1/4">
+              <img
+                src={user.profile_img ? `http://localhost:8000${user.profile_img}/` : "https://d2t5hgiouuhmes.cloudfront.net/GJIqTd_5v-OIP.jpg"}
+                alt="Avatar"
+                className="w-full rounded-lg"
+                style={{ height: "100%" }}
+              />
+              <input
+                className="mt-3"
+                type="file"
+                name="profile_img"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div className="w-3/4 ml-4">
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">User Name</label>
+                <input
+                  type="text"
+                  value={user.username}
+                  onChange={(e) => setUser({ ...user, username: e.target.value })} 
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="username"
+                />
+              </div>
+              <div className="flex mt-4">
+                <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2">
+                  Update
+                </button>
+                <button onClick={() => history("/")} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                  Home
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      )}
+    </div>
+  </div>
+</div>
 
 
 
-                </div>
 
 
             </div>
-
-
-
-
         </div>
     )
 }
