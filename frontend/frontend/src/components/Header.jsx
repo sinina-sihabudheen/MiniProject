@@ -19,15 +19,15 @@ const Header = ({title}) => {
         <div class="container-fluid">
           <h3 class="text-light m-2 ">{title} </h3>
             <div class="d-flex">
-              {!is_admin && 
+              {/* {!is_admin &&  */}
                   <>
                     <a class="navbar-brand"><Link to="/">Home</Link></a>
                     <a class="navbar-brand"><Link to='/profile'>Profile</Link></a>
                   </>
-               }
+               {/* } */}
                
-                <a class="navbar-brand text-warning">Hello,{username}</a>
-                <button className='bttn' onClick={logout}>logout</button>
+                {/* <a class="navbar-brand text-warning">Hello,{username}</a>
+                <button className='bttn' onClick={logout}>logout</button> */}
             </div>
         </div>
       </nav>  

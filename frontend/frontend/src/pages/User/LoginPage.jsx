@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import login, { getlocal } from '../../helpers/auth';
 import {jwtDecode} from 'jwt-decode';
-import { updateAuthToken, updateUser } from '../../redux/userReducer'
+import { setUserInfo, updateAuthToken, updateUser } from '../../redux/userReducer'
 import {Link, useNavigate} from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 import { FaSignInAlt } from 'react-icons/fa'
+
 
 
 const LoginPage = () => {
@@ -37,14 +38,19 @@ const LoginPage = () => {
       const response= await login(email, password)
       console.log(response)
       if (response.error) {
-        toast.error(response.error); // Use error message from server
-        return; // Exit if login failed
+        toast.error(response.error); 
+        return; 
       }
       
 
       const decoded=jwtDecode(response.access)
       console.log(decoded)
-  
+      if (decoded.is_admin){
+        setEmail('');
+        setPassword('');
+        return;
+      }
+      dispatch(setUserInfo(decoded))  
       dispatch(updateUser(decoded))
       dispatch(updateAuthToken(response))
       console.log("successfull")
@@ -74,7 +80,7 @@ const LoginPage = () => {
       <section className='form'>
       <form onSubmit={loginSubmit}>
         <div className="form-group">
-       <label for="email" className="form-label">Email Address</label>
+       <label  className="form-label">Email Address</label>
 
           <input type="email" 
           name='email' 
@@ -85,7 +91,7 @@ const LoginPage = () => {
           placeholder="Enter email" />
         </div>
         <div className="form-group">
-        <label for="password" className="form-label">Password</label>
+        <label  className="form-label">Password</label>
           <input type="password" 
           className="form-control" 
           value={password} 

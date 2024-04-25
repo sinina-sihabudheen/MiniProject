@@ -21,13 +21,17 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
+        
+        print(user.email,token)
 
         token['username'] = user.username
+        # token['email'] = user.email
         token['is_admin'] = user.is_superuser        
         
         return token
     
 class MyTokenObtainPairView(TokenObtainPairView):
+
     serializer_class=MyTokenObtainPairSerializer
 
 
@@ -45,8 +49,9 @@ class RegisterView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         print('serializer',serializer.data)
-        return Response(serializer.data)
-    
+        return Response(serializer.data,status=status.HTTP_201_CREATED)
+
+
 
 @api_view(['GET'])   
 def userList(request):

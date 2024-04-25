@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import login, { getlocal } from '../../helpers/auth';
+
+import adminlogin, {getAdminlocal} from '../../helpers/adminAuth';
 import {jwtDecode} from 'jwt-decode';
-import { updateAuthToken, updateUser } from '../../redux/userReducer'
+import { updateAdminToken, setAdminInfo} from '../../redux/AdminReducer'
 import {Link, useNavigate} from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 import { FaSignInAlt } from 'react-icons/fa'
 
 
 const AdminLogin = () => {
-    const [email,setEmail]= useState('')
+  const [email,setEmail]= useState('')
   const [password,setPassword] = useState('')
 
   const navigate= useNavigate()
-  const response=getlocal()
+  const response=getAdminlocal()
 
-  const {user,userToken}=useSelector((state)=>state.users)
+  const {admin,adminToken}=useSelector((state)=>state.admin)
   const dispatch= useDispatch()
 
   useEffect(()=>{
@@ -35,19 +36,23 @@ const AdminLogin = () => {
     
     
     try{
-      const response= await login(email, password)
+      const response= await adminlogin(email, password)
       console.log(response)
       if (response.error) {
-        toast.error(response.error); // Use error message from server
-        return; // Exit if login failed
+        toast.error(response.error); 
+        return; 
       }
       
 
       const decoded=jwtDecode(response.access)
-      console.log(decoded)
-  
-      dispatch(updateUser(decoded))
-      dispatch(updateAuthToken(response))
+      if (!decoded.is_admin){
+        // toast.error('You do not have permission to access the admin page.');
+        return;
+      }
+
+      dispatch(setAdminInfo(decoded))
+
+      dispatch(updateAdminToken(response))
       console.log("successfull")
     
       navigate('/adminhome')
@@ -74,7 +79,7 @@ const AdminLogin = () => {
       <section className='form'>
       <form onSubmit={loginSubmit}>
         <div className="form-group">
-       <label for="email" className="form-label">Email Address</label>
+       <label className="form-label">Email Address</label>
 
           <input type="email" 
           name='email' 
@@ -85,7 +90,7 @@ const AdminLogin = () => {
           placeholder="Enter email" />
         </div>
         <div className="form-group">
-        <label for="password" className="form-label">Password</label>
+        <label className="form-label">Password</label>
           <input type="password" 
           className="form-control" 
           value={password} 

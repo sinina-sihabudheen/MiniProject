@@ -20,13 +20,6 @@ const Profile = () => {
         profile_img: '',
     });
     const history = useNavigate()
-
-    // const handleChange = (e) => {
-    //     setUser({
-    //         ...user,
-    //         username: e.target.value
-    //     })
-    // }
     const handleChange = (e) => {
         const { name, value, files } = e.target;
 
@@ -62,8 +55,6 @@ const Profile = () => {
     }, [user_id]);
 
 
-
-
     const updateProfile = async (e) => {
         e.preventDefault();
         console.log("ssssss", e.target.username.value);
@@ -79,9 +70,10 @@ const Profile = () => {
                 method: 'PUT',
                 body: formData
             });
-            toast.success('User updated successfully');
-            history('/profile');
+            toast.success('User Image updated successfully');
             setIsopen(false)
+            history('/profile');
+            // setIsopen(false)
             if (!response.ok) {
                 throw new Error('Failed to update user');
             }
@@ -99,13 +91,7 @@ const Profile = () => {
             setIsopen(false)
         }
 
-
-
-
-        try {
-
-
-            
+        try {           
 
 
         } catch (error) {
@@ -113,10 +99,6 @@ const Profile = () => {
             toast.error('Failed to update user');
         }
     };
-
-
-
-
 
     return (
         <div>

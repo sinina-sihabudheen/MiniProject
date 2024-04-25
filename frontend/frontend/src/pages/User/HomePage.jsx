@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
-import LoginPage from './LoginPage'
 import { Link } from 'react-router-dom'
-import Header from '../../components/Header'
-import { getlocal } from '../../helpers/auth'
+import { userLogout } from '../../redux/userReducer'
+import { useDispatch } from 'react-redux'
 
 const HomePage = ({title}) => {
   const [user,setUser] = useState(false)
+  const dispatch = useDispatch()
 
   useEffect(() => {
   const response=localStorage.getItem("userToken")
@@ -18,6 +18,7 @@ const HomePage = ({title}) => {
   }, [])
   const logoutHandle=()=>{
     localStorage.removeItem("userToken")
+    dispatch(userLogout())
     setUser(false)
   }  
   return (

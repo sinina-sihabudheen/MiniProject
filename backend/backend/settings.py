@@ -38,27 +38,11 @@ INSTALLED_APPS = [
     "corsheaders",
 ]
 
-
-
-
-
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-
-    "corsheaders.middleware.CorsMiddleware",
-
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-AUTH_USER_MODEL = "api.User"
-
 REST_FRAMEWORK = { 
+    'DEFAULT_AUTHENTICATION_CLASSES': (    
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        
+    ),
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
@@ -67,14 +51,16 @@ REST_FRAMEWORK = {
 
         'rest_framework.filters.SearchFilter',
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (    
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ) 
+    
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ],
 }
 
 
 
 SIMPLE_JWT = {
+    
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=90),
     "ROTATE_REFRESH_TOKENS": True,
@@ -113,6 +99,26 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
+
+
+
+
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+
+    "corsheaders.middleware.CorsMiddleware",
+
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+AUTH_USER_MODEL = "api.User"
+
 
 
 

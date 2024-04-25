@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 import Swal from 'sweetalert2'
 import './AdminHome.css'
+import { adminLogout } from '../../redux/AdminReducer'
+import { useDispatch } from 'react-redux'
 
 
 function AdminPanel() {
@@ -13,8 +15,8 @@ function AdminPanel() {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    // const history = useNavigate()
-    // const { user_id } = useParams();
+    
+    const navigate = useNavigate()
 
     const [editUser, setEditUser] = useState({
         username:"",
@@ -22,7 +24,7 @@ function AdminPanel() {
         id:0
     })
     const [isopen, setIsopen] = useState(false)
-
+    const dispatch= useDispatch()
 
 
 
@@ -97,6 +99,11 @@ function AdminPanel() {
         }
         setUserList(request.data)
     }
+    const logoutHandle=()=>{
+        localStorage.removeItem("adminToken")
+        dispatch(adminLogout())
+        navigate('/admin')
+      } 
 
 
     return (
@@ -104,7 +111,7 @@ function AdminPanel() {
             <div class="admin-container">
                 <div class="admin-sidebar">
                     <div class="sidebar-header">
-                        <h3>Admin Panel</h3>
+                        <h3>Admin Panel</h3><button className='mx-4 btn btn-danger' onClick={logoutHandle}>Logout</button>
                     </div>
                     <ul class="sidebar-menu">
                         <li><Link to='/adduser'>Add User</Link></li>
@@ -114,10 +121,8 @@ function AdminPanel() {
                     <div class="admin-table">
                         <Toaster position='top-center' reverseOrder='false' ></Toaster>
                         <div class="search-bar">
-                            <input onChange={e => searchUser(e.target.value)} type="search" class="search-input" id="datatable-search-input" placeholder="Search..." />
-                            <button className="search-button" type="submit">
-                                search
-                            </button>
+                            <input onChange={e => searchUser(e.target.value)} type="search" class="search-input" id="datatable-search-input" placeholder="Search here..." />
+                            
                         </div>
                         <table class="table table-bordered my-4 " >
                             <caption></caption>
@@ -191,6 +196,7 @@ function AdminPanel() {
                         </button>
                     </form>}
                 </div >
+                
             </div >
         </div>
     )

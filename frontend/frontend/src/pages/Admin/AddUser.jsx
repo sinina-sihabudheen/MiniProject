@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 
 
@@ -112,10 +112,11 @@ const AddUser = () => {
                </div><br />
              
                <button type="submit" className="btn btn-primary">Add User</button>
-              
-
+               <Link to={'/adminhome'}>
+               <button className="btn btn-danger">Cancel</button></Link>
+               
            </form>
-          
+           
    
        </div>
    </div>

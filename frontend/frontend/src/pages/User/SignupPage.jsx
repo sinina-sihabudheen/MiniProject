@@ -42,7 +42,7 @@ const Signup = () => {
                     password
                 })
             })
-            console.log(response)
+            console.log('ghgj',response)
             if(response.status===400){
                 toast.error('Username or Email id already exist!')
                 navigate('/register')
