@@ -60,69 +60,6 @@ const AddUser = () => {
     }
   return (
     <>
-    {/* <Toaster position='top-left' reverseOrder='false' ></Toaster> */}
-   {/* <section className='heading'>
-   <h3>
-     Add New User
-   </h3>
-  
-   </section>
-   <section className='form'>
-   <div className="regform  bg-white">
-       <div  class='container p-5 border border-1'>
-       
-           <form onSubmit={handleSubmit}>
-               <h5>Add Details Here..</h5>
-               <br />
-               <div className="form-group">
-               <label for="username" className="form-label">Username</label>
-                   <input type="text" 
-                   className="form-control" 
-                   name='username' 
-                   id="username"                        
-                   placeholder='Enter Username'
-                   onChange={(e)=>setUsername(e.target.value)}/>
-               </div><br />
-               <div className="form-group">
-               <label for="email" className="form-label">Email Address</label>
-                   <input type="email" 
-                   className="form-control" 
-                   name='email' 
-                   id="email"                        
-                   placeholder='Enter Email address' 
-                   onChange={(e)=>setEmail(e.target.value)}/>
-               </div><br />
-               <div className="form-group">
-               <label for="password" className="form-label">Password</label>
-                   <input type="password" 
-                   name="password" 
-                   className="form-control" 
-                   id="password" 
-                   placeholder='Enter Password'
-                   onChange={(e)=>setPassword(e.target.value)}/>
-               </div><br />
-               <div className="form-group">
-               <label for="password1" className="form-label">Confirm Password</label>
-                   <input type="password" 
-                   name="password1" 
-                   className="form-control" 
-                   id="password1" 
-                   placeholder='Confirm Password'
-                   onChange={(e)=>setPassword1(e.target.value)}/>
-               </div><br />
-             
-               <button type="submit" className="btn btn-primary">Add User</button>
-               <Link to={'/adminhome'}>
-               <button className="btn btn-danger">Cancel</button></Link>
-               
-           </form>
-           
-   
-       </div>
-   </div>
-   </section> */}
-
-
 <div className="flex justify-center items-center h-screen bg-white-300">   
     <Toaster position='top-left' reverseOrder='false' ></Toaster>
 

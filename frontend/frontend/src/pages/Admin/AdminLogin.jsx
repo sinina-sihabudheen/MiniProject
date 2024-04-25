@@ -68,41 +68,6 @@ const AdminLogin = () => {
   
   return (
     <>
-      
-      {/* <Toaster position='top-left' reverseOrder='false' ></Toaster>
-      <section className='heading'>
-        <h1>
-          <FaSignInAlt /> Admin Login
-        </h1>
-       
-      </section><br />
-      <section className='form'>
-      <form onSubmit={loginSubmit}>
-        <div className="form-group">
-       <label className="form-label">Email Address</label>
-
-          <input type="email" 
-          name='email' 
-          value={email} 
-          onChange={(e)=>setEmail(e.target.value)} 
-          className="form-control" 
-          id='email'
-          placeholder="Enter email" />
-        </div>
-        <div className="form-group">
-        <label className="form-label">Password</label>
-          <input type="password" 
-          className="form-control" 
-          value={password} 
-          onChange={(e)=>setPassword(e.target.value)} 
-          name='password' 
-          id='password' 
-          placeholder="Password" />
-        </div>
-        
-        <button type="submit" className="btn btn-primary">Submit</button>
-      </form>
-      </section> */}
 
 <div className="flex justify-center items-center w-screen h-screen bg-gray-300">   
 <Toaster position='top-left' reverseOrder='false' ></Toaster>

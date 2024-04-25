@@ -67,68 +67,7 @@ const Signup = () => {
     <>
       <div className="flex justify-center items-center w-screen h-screen bg-gray-300">   
 
-         <Toaster position='top-left' reverseOrder='false' ></Toaster>
-        {/* <section className='heading'>
-        <h1>
-          Register
-        </h1>
-       
-        </section>
-        <section className='form'>
-        <div className="regform  bg-white">
-            <div  class='container p-5 border border-1'>
-            
-                <form onSubmit={signupSubmit}>
-                    <h2>Register for free!</h2>
-                    <br />
-                    <div className="form-group">
-                    <label for="username" className="form-label">Username</label>
-                        <input type="text" 
-                        className="form-control" 
-                        name='username' 
-                        id="username"                        
-                        placeholder='Enter Username'
-                        onChange={(e)=>setUsername(e.target.value)}/>
-                    </div><br />
-                    <div className="form-group">
-                    <label for="email" className="form-label">Email Address</label>
-                        <input type="email" 
-                        className="form-control" 
-                        name='email' 
-                        id="email"                        
-                        placeholder='Enter Email address' 
-                        onChange={(e)=>setEmail(e.target.value)}/>
-                    </div><br />
-                    <div className="form-group">
-                    <label for="password" className="form-label">Password</label>
-                        <input type="password" 
-                        name="password" 
-                        className="form-control" 
-                        id="password" 
-                        placeholder='Enter Password'
-                        onChange={(e)=>setPassword(e.target.value)}/>
-                    </div><br />
-                    <div className="form-group">
-                    <label for="password1" className="form-label">Confirm Password</label>
-                        <input type="password" 
-                        name="password1" 
-                        className="form-control" 
-                        id="password1" 
-                        placeholder='Confirm Password'
-                        onChange={(e)=>setPassword1(e.target.value)}/>
-                    </div><br />
-                  
-                    <button type="submit" className="btn btn-primary">SignUp</button>
-                   
-
-                </form>
-                <br/>
-                <p>Already have an account? <Link to='/login' className='text-danger text-decoration-none'>Login</Link></p>
-                <br/>
-        
-            </div>
-        </div>
-        </section> */}
+         <Toaster position='top-left' reverseOrder='false' ></Toaster>      
 
 <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-white">
   <div className="sm:mx-auto sm:w-full sm:max-w-sm">
